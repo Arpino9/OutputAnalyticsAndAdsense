@@ -1,12 +1,12 @@
-//=============================
-// Function：getGaDataPrevDay
-//  Outline：Google AnalyticsとAdsenseからデータ取得する
-//  Remarks：参考にさせて頂いたソース
-//           https://tekito-style.me/columns/gas-analytics-basic
-//-----------------------------
-//   Create：2021/01/23
-//   Update：2021/01/24  
-//=============================
+/*=============================
+   Function：getGaDataPrevDay
+    Outline：Google AnalyticsとAdsenseからデータ取得する
+    Remarks：参考にさせて頂いたソース
+             https://tekito-style.me/columns/gas-analytics-basic
+-------------------------------
+     Create：2021/01/23
+     Update：2021/01/24  
+=============================*/
 function getGaDataPrevDay() {
 // 昨日の日付を取得する
 var date = new Date();
@@ -21,7 +21,7 @@ var weekDayNum = date.getDay();
 var weekDay = ary[weekDayNum] ;
 
 //-------GAデータ-----------
-// GAからデータを取得する関数の定義
+// GAからデータを取得する関数(メモ)
 /*
    ga:date               : 日付
    ga:yearMonth          : 年月
@@ -94,14 +94,12 @@ var FormatBounceRate = sheet.getRange("H:H").setNumberFormat("0%");
 var FormatExitRate = sheet.getRange("I:I").setNumberFormat("0%");
 
 //滞在時間
-  var FormatDuration = sheet.getRange("F:F").setNumberFormat("#,##00.00");
+var FormatDuration = sheet.getRange("F:F").setNumberFormat("#,##00.00");
+
 //ページ/セッション
 var FormatPageSession = sheet.getRange("K:K").setNumberFormat("#,##0.000");
 
-// // Adsense
-// var FormatAdsense = sheet.getRange("M:M").setNumberFormat("0%");  
-  
-// Adsenseフォーマット(表示)
+// AdsenseフォーマットをGoogle Financeからドル→円変換して表示させる
 let strFormula = 'GOOGLEFINANCE("CURRENCY:USDJPY") * M' + lastRow;
 strFormula = 'ROUND(' + strFormula + ')';
 var FormulaAdsense = sheet.getRange(lastRow, 14).setFormula(strFormula);
